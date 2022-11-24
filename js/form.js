@@ -3,6 +3,7 @@
 const listElement = document.querySelector('ul')
 const inputElement = document.querySelector('input')
 const buttonElement = document.querySelector('button')
+let aux;
 
 const produtos = JSON.parse(localStorage.getItem('list_produtos')) || []
 
@@ -12,34 +13,44 @@ function mostraProdutos() {
 
     for (item of produtos) {
 
-        const itemList = document.createElement('li')
+        const itemList = document.createElement('li');
+        const inputItem = document.createElement('input');
+        const pos = produtos.indexOf(item);
+        inputItem.setAttribute('type', 'checkbox');
+        inputItem.setAttribute('name', 'checkbox');
+        inputItem.setAttribute('class', 'check');
+        inputItem.setAttribute('onclick', `addPreco(${pos})`);
+        inputItem.setAttribute('id', `check${pos}`);
+        const labelItem = document.createElement('label');
+        labelItem.setAttribute('for', 'check');
+        labelItem.setAttribute('class', 'label');
+        labelItem.innerHTML = item;
+        const itemText = document.createTextNode(item);
+        itemList.setAttribute('class', 'mdl-list__item');
+        const linkElement = document.createElement('a');
+        linkElement.setAttribute('class', 'material-icons');
+        const linkText = document.createTextNode('delete');
+        linkElement.appendChild(linkText);
+        linkElement.setAttribute('onclick', `removeProduto(${pos})`);
+        itemList.appendChild(inputItem);
+        itemList.appendChild(labelItem);
+        itemList.appendChild(linkElement);
+        listElement.appendChild(itemList);
 
-        const inputItem = document.createElement('input')
-        inputItem.setAttribute('type', 'checkbox')
-        inputItem.setAttribute('class', 'check')
-        inputItem.setAttribute('onclick', 'check()')
-        labelItem = document.createElement('label')
-        labelItem.setAttribute('for', 'check')
-        labelItem.setAttribute('class', 'label')
-        labelItem.innerHTML = item
-        const itemText = document.createTextNode(item)
-
-        itemList.setAttribute('class', 'mdl-list__item')
-
-        const linkElement = document.createElement('a')
-        linkElement.setAttribute('class', 'material-icons')
-
-        const linkText = document.createTextNode('delete')
-        linkElement.appendChild(linkText)
-
-        const pos = produtos.indexOf(item)
-        linkElement.setAttribute('onclick', `removeProduto(${pos})`)
-
-        itemList.appendChild(inputItem)
-        itemList.appendChild(labelItem)
-        itemList.appendChild(linkElement)
-        listElement.appendChild(itemList)
     }
+}
+
+function addPreco(pos) {
+    var checkbox = document.querySelector(`#check${pos}`);
+    if (checkbox.checked) {
+        const resposta = window.prompt("Digite o preço do produto");
+        if (resposta == null || resposta == '') {
+            alert("O campo não pode estar vazio");
+            checkbox.checked = false;
+        }
+
+    }
+
 }
 
 mostraProdutos()

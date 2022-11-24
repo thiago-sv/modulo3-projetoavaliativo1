@@ -13,6 +13,15 @@ function mostraProdutos() {
     for (item of produtos) {
 
         const itemList = document.createElement('li')
+
+        const inputItem = document.createElement('input')
+        inputItem.setAttribute('type', 'checkbox')
+        inputItem.setAttribute('class', 'check')
+        inputItem.setAttribute('onclick', 'check()')
+        labelItem = document.createElement('label')
+        labelItem.setAttribute('for', 'check')
+        labelItem.setAttribute('class', 'label')
+        labelItem.innerHTML = item
         const itemText = document.createTextNode(item)
 
         itemList.setAttribute('class', 'mdl-list__item')
@@ -26,9 +35,9 @@ function mostraProdutos() {
         const pos = produtos.indexOf(item)
         linkElement.setAttribute('onclick', `removeProduto(${pos})`)
 
-        itemList.appendChild(itemText)
+        itemList.appendChild(inputItem)
+        itemList.appendChild(labelItem)
         itemList.appendChild(linkElement)
-
         listElement.appendChild(itemList)
     }
 }

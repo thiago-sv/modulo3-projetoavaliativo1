@@ -3,7 +3,6 @@
 const listElement = document.querySelector('ul')
 const inputElement = document.querySelector('input')
 const buttonElement = document.querySelector('button')
-let aux;
 
 const produtos = JSON.parse(localStorage.getItem('list_produtos')) || []
 
@@ -25,8 +24,9 @@ function mostraProdutos() {
         labelItem.setAttribute('for', 'check');
         labelItem.setAttribute('class', 'label');
         labelItem.innerHTML = item;
+
         const itemText = document.createTextNode(item);
-        itemList.setAttribute('class', 'mdl-list__item');
+        itemList.setAttribute('class', 'item');
         const linkElement = document.createElement('a');
         linkElement.setAttribute('class', 'material-icons');
         const linkText = document.createTextNode('delete');
@@ -41,7 +41,8 @@ function mostraProdutos() {
 }
 
 function addPreco(pos) {
-    var checkbox = document.querySelector(`#check${pos}`);
+    let checkbox = document.querySelector(`#check${pos}`);
+
     if (checkbox.checked) {
         const resposta = window.prompt("Digite o preço do produto");
         if (resposta == null || resposta == '') {

@@ -29,6 +29,10 @@ header .header {
 	margin: auto;
 }
 
+header .header-title {
+	text-transform: uppercase
+}
+
 .input-produto {
 	width: 300px;
 	height: 25px;

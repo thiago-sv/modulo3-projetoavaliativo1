@@ -3,6 +3,7 @@
 const listElement = document.querySelector('ul')
 const inputElement = document.querySelector('input')
 const buttonElement = document.querySelector('button')
+const labelElement = document.querySelector('label')
 let valorTotal = 0;
 let resposta = new Array();
 const produtos = JSON.parse(localStorage.getItem('list_produtos')) || []
@@ -19,13 +20,13 @@ function mostraProdutos() {
         inputItem.setAttribute('type', 'checkbox');
         inputItem.setAttribute('name', 'checkbox');
         inputItem.setAttribute('class', 'check');
+
         inputItem.setAttribute('onclick', `addPreco(${pos})`);
         inputItem.setAttribute('id', `check${pos}`);
         const labelItem = document.createElement('label');
         labelItem.setAttribute('for', 'check');
         labelItem.setAttribute('class', 'label');
         labelItem.innerHTML = item;
-
         const itemText = document.createTextNode(item);
         itemList.setAttribute('class', 'item');
         const linkElement = document.createElement('a');
@@ -44,10 +45,10 @@ function mostraProdutos() {
 function addPreco(pos) {
     let checkbox = document.querySelector(`#check${pos}`);
     if (checkbox.checked) {
-        resposta[pos] = window.prompt("Digite o preço do produto");
+        resposta[pos] = window.prompt("Digite o preço do produto ");
 
-        if (resposta[pos] == null || resposta[pos] == '' || isNaN(resposta[pos])) {
-            alert("O campo não pode estar vazio e deve conter apenas números");
+        if (resposta[pos] == null || resposta[pos] == '' || isNaN(resposta[pos]) || resposta[pos] < 0) {
+            alert("O campo não pode estar vazio e deve conter apenas números maiores que zero");
             checkbox.checked = false;
             return;
         }

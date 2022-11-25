@@ -4,6 +4,7 @@ const listElement = document.querySelector('ul')
 const inputElement = document.querySelector('input')
 const buttonElement = document.querySelector('button')
 let valorTotal = 0;
+let resposta = new Array();
 const produtos = JSON.parse(localStorage.getItem('list_produtos')) || []
 
 function mostraProdutos() {
@@ -42,19 +43,21 @@ function mostraProdutos() {
 
 function addPreco(pos) {
     let checkbox = document.querySelector(`#check${pos}`);
-
     if (checkbox.checked) {
-        const resposta = window.prompt("Digite o preço do produto");
+        resposta[pos] = window.prompt("Digite o preço do produto");
 
-        if (resposta == null || resposta == '' || isNaN(resposta)) {
+        if (resposta[pos] == null || resposta[pos] == '' || isNaN(resposta[pos])) {
             alert("O campo não pode estar vazio e deve conter apenas números");
             checkbox.checked = false;
             return;
         }
-
-        valorTotal += parseFloat(resposta);
+        valorTotal += parseFloat(resposta[pos]);
         document.getElementById('valor-total').innerHTML = valorTotal;
 
+    } else {
+        valorTotal -= parseFloat(resposta[pos]);
+
+        document.getElementById('valor-total').innerHTML = valorTotal;
     }
 
 }
@@ -80,6 +83,10 @@ buttonElement.setAttribute('onclick', 'insereProduto()')
 
 function removeProduto(pos) {
     produtos.splice(pos, 1)
+    if (resposta[pos] != null) {
+        valorTotal -= parseFloat(resposta[pos]);
+        document.getElementById('valor-total').innerHTML = valorTotal;
+    }
     mostraProdutos()
     salvarNoLocalStorage()
 }

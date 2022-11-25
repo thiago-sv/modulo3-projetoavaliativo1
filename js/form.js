@@ -3,7 +3,6 @@
 const listElement = document.querySelector('ul')
 const inputElement = document.querySelector('input')
 const buttonElement = document.querySelector('button')
-const labelElement = document.querySelector('label')
 let valorTotal = 0;
 let resposta = new Array();
 const produtos = JSON.parse(localStorage.getItem('list_produtos')) || []
@@ -45,7 +44,7 @@ function mostraProdutos() {
 function addPreco(pos) {
     let checkbox = document.querySelector(`#check${pos}`);
     if (checkbox.checked) {
-        resposta[pos] = window.prompt("Digite o preço do produto ");
+        resposta[pos] = window.prompt("Digite o preço do produto " + JSON.stringify(produtos[pos]));
 
         if (resposta[pos] == null || resposta[pos] == '' || isNaN(resposta[pos]) || resposta[pos] < 0) {
             alert("O campo não pode estar vazio e deve conter apenas números maiores que zero");

@@ -48,12 +48,26 @@ button {
 	background-color: rgb(52, 172, 52);
 }
 
+.load {
+	width: 250px;
+	height: 250px;
+	position: absolute;
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	top: 20%;
+	left: 45%;
+	visibility: hidden;
+	color: green;
+}
+
 .list {
 	width: 100%;
+	display: flex;
 }
 
 ul {
-	width: 100%;
+	width: auto;
 	margin-left: 50px;
 	padding: 0;
 }
@@ -82,15 +96,8 @@ input[type=checkbox]:checked~label {
 	text-decoration: line-through;
 }
 
-.load {
-	width: 250px;
-	height: 250px;
-	position: absolute;
+.valor-total {
+	width: 100%;
 	display: flex;
-	text-align: center;
-	flex-direction: column;
-	top: 20%;
-	left: 45%;
-	visibility: hidden;
-	color: green;
+	justify-content: flex-end;
 }

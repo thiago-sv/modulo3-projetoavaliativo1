@@ -3,7 +3,7 @@
 const listElement = document.querySelector('ul')
 const inputElement = document.querySelector('input')
 const buttonElement = document.querySelector('button')
-
+let valorTotal = 0;
 const produtos = JSON.parse(localStorage.getItem('list_produtos')) || []
 
 function mostraProdutos() {
@@ -49,6 +49,9 @@ function addPreco(pos) {
             alert("O campo não pode estar vazio");
             checkbox.checked = false;
         }
+
+        valorTotal += parseFloat(resposta);
+        document.getElementById('valor-total').innerHTML = valorTotal;
 
     }
 

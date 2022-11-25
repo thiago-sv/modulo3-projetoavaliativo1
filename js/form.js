@@ -45,9 +45,11 @@ function addPreco(pos) {
 
     if (checkbox.checked) {
         const resposta = window.prompt("Digite o preço do produto");
-        if (resposta == null || resposta == '') {
-            alert("O campo não pode estar vazio");
+
+        if (resposta == null || resposta == '' || isNaN(resposta)) {
+            alert("O campo não pode estar vazio e deve conter apenas números");
             checkbox.checked = false;
+            return;
         }
 
         valorTotal += parseFloat(resposta);

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+	<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="css/index.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<title>LabShoppingList</title>
+</head>
+
+<body>
+
+	<div class="content">
+
+		<header>
+			<div class="header">
+				<div class="header__logo">
+					<img src="img/lab365logo.jpeg" alt="Logo">
+				</div>
+				<div class="header-title">
+					<h1>Supermarket</h1>
+				</div>
+			</div>
+		</header>
+
+
+		<h2>Lista de compras</h2>
+
+		<div class="input-button">
+
+			<div class="input">
+				<input class="input-produto" type="text" id="produto" placeholder="Digite o nome do produto" required>
+			</div>
+
+			<button class="button">
+				Adicionar produto
+			</button>
+
+		</div>
+
+		<div class="load">
+			<video src="img/produto-adicionado-com-sucesso.mp4" autoplay loop muted></video>Produto
+			adicionado com sucesso!
+		</div>
+
+		<div class="list">
+
+			<ul></ul>
+			<div class="valor-total">
+				<h3>Valor total: <br> R$ <span id="valor-total"></span></h3>
+
+
+			</div>
+		</div>
+
+	</div>
+
+	<script src="js/form.js"></script>
+</body>
+
+</html>
